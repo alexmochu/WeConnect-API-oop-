@@ -12,7 +12,7 @@
     <link href="css/style.css" rel="stylesheet"/>
     
   </head>
-  <body>
+  <body style="background-color: rgba(255, 255, 255, 0)">
   <!-- CONTENT STARTS HERE -->
   
     <!-- Header -->
@@ -63,29 +63,48 @@
       <div class="row">
         <div class="col-lg-12">
           <div >               
-            <h2>Login to your Account</h2>
+            <h2>Create or Update your Business</h2>
             <form>
-                <div class="imgcontainer">
-                    <img src="/home/chumo/Desktop/WeConnect-API-oop-/Designs/UI/templates/img/profile.png" alt="Avatar" class="avatar">
-                </div>
-                <div class="container">
-                    <label for="email" class="bcText"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1" class="bcText">Business Name</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Business name">
+                     
+                    </div>
 
-                    <label for="psw" class="bcText"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <div class="form-group">
+                      <label for="exampleSelect1" class="bcText">Select Category</label>
+                      <select class="form-control" id="exampleSelect1">
+                        <option>Category 1</option>
+                        <option>Category 2</option>
+                        <option>Category 3</option>
+                        <option>Category 4</option>
+                        <option>Category 5</option>
+                      </select>
+                    </div>
 
-                    <button type="submit" class="loginbtn">Login</button>
+                    <div class="form-group">
+                            <label for="exampleSelect1" class="bcText">Select Location</label>
+                            <select class="form-control" id="exampleSelect1">
+                              <option>Location 1</option>
+                              <option>Location 2</option>
+                              <option>Location 3</option>
+                              <option>Location 4</option>
+                              <option>Location 5</option>
+                            </select>
+                    </div>
 
-                    <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
-                </div>
+                    <div class="form-group">
+                      <label for="exampleTextarea" class="bcText">Describe your Business</label>
+                      <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+            
+                      <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+                      
+                    </div>
 
-                <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" class="registerbtn">Register for an account</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-                </div>
-
-            </form>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
             <hr width="50%">
           </div>
         </div>

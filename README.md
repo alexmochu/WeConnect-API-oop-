@@ -20,8 +20,8 @@ pip install -r requirements.txt
 
 # Running the API
 Type:
-export FLASK_APP=run.py
-flask run
+- export FLASK_APP=run.py
+- flask run
 
 # Tests
 

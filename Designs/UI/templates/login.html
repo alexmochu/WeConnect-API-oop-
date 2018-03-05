@@ -24,59 +24,78 @@
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html#">
             <i class="fas fa-map-marker" aria-hidden="true"></i>&nbsp; weConnect <span class="sr-only">(current)</span>
         </a>
 
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/index.html#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/create_edit_business.html#">Create/Edit Business</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/my_biz.html">My Businesses</a>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="/index.html#">Home <span class="sr-only">(current)</span></a>
               </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/catalog.html">View Businesses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/biz_review_page.html">Add Business Reviews</a>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/register.html#">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login.html#">Login</a>
-            </li>
-          </ul>
-        </div>
+              <li class="nav-item">
+                <a class="nav-link" href="/create_edit_business.html#">Create/Edit Business</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/my_biz.html">My Businesses</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/catalog.html">View Businesses</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/biz_review_page.html">Add Business Reviews</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/register.html#">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/login.html#">Login</a>
+              </li>
+            </ul>
+          </div>
       </nav>
     </header>
     
     <!-- Main Body Content -->
+   
     <div class="intro-header">
-    <div class="cover-container">
+    <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="intro-message">
-            <h1>Welcome to weConnect API UI Templates</h1>                
-            <h2>Create awareness of your businesses by creating a profile page for your Business</h2>
+          <div >               
+            <h2>Login to your Account</h2>
+            <form>
+                <div class="imgcontainer">
+                    <img src="/home/chumo/Desktop/WeConnect-API-oop-/Designs/UI/templates/img/profile.png" alt="Avatar" class="avatar">
+                </div>
+                <div class="container">
+                    <label for="email" class="bcText"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email">
+
+                    <label for="psw" class="bcText"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <button type="submit" class="loginbtn">Login</button>
+
+                    <label><input type="checkbox" checked="checked" name="remember"> Remember me </label>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="registerbtn">Register for an account</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+
+            </form>
             <hr width="50%">
-            <p>
-              <a href="register.html" class="btn btn-danger">Register</a>
-              <a href="login.html" class="btn btn-primary">Login</a>
-            </p> 
           </div>
         </div>
       </div>
     </div>
     </div>
+   
     
 
     <!-- Footer -->

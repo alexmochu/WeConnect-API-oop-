@@ -10,7 +10,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: rgba(99, 211, 24, 0.7);
+    background-color: rgba(255, 255, 255, 0);
     color: #000;
   }
   
@@ -63,12 +63,82 @@ nav > .navbar-brand {
     background-color:#42DD00;
 }
 
+/* Login and Sign Up Pages */
+form {
+    border: 3px solid #f1f1f1;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.bcText {
+    float: left;
+}
+
+button {
+    background-color: #1404F5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+.loginbtn {
+    width: 100%;
+}
+
+.signupbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+.rgloginbtn, .signupbtn {
+    float: left;
+    width: 50%;
+  }
+
+
+.registerbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #FF1100;
+    float: left;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 10%;
+    border-radius: 10%;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
 /* Footer */
 .footer .inner {
     text-align: center;
     padding: 15px 0;
     align-content: center;
-    background-color: #42DD00;
+    background-color: #FFFFFF;
     }
       
 .footer .inner p {

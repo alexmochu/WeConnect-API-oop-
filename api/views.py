@@ -10,6 +10,6 @@ app.config.from_pyfile('config.py')
  
 # Home route
 @app.route('/')
-def hello_world():
+def home_route():
     response = jsonify({'greetings': 'Greetings and welcome to weConnect API'})
     return response

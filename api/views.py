@@ -3,7 +3,7 @@ from flask import jsonify, request
 from flask_api import FlaskAPI
 
 # local imports
-from api.useraccounts import UserClass
+from api.user_accounts import UserClass
 
 # Initialize the api
 app = FlaskAPI(__name__, instance_relative_config=True)
@@ -28,7 +28,7 @@ def signup():
         email = request.json['email']
         password = request.json['password']
         cpassword = request.json['cpassword']
-        msg = user_object.signupUser(username, email, password, cpassword)
+        msg = user_object.register(username, email, password, cpassword)
         response = jsonify(msg)
         response.status_code = 201
         return response

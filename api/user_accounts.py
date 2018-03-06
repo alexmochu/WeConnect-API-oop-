@@ -8,7 +8,7 @@ class UserClass(object):
     def __init__(self):
         self.users_list = []
     
-    def signupUser(self, username, email, password, cpassword):
+    def register(self, username, email, password, cpassword):
         """ Create user accounts by user info to empty dictonary """
         user_dict = {}
 

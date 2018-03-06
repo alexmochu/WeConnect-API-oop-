@@ -14,9 +14,9 @@ class UserClass(object):
 
         for user in self.users_list:
             if username == user['username']:
-                return "Account with Username already exists. Please login or Recover account"
+                return "Account already exists. Please login or Recover account"
             elif email == user['email']:
-                return "Account with Email already exists. Please login or Recover account"
+                return "Account already exists. Please login or Recover account"
 
         if len(password) < 8:
             return "Input a password that is at least 8 characters long"
@@ -34,7 +34,7 @@ class UserClass(object):
 
             self.users_list.append(user_dict)
         else:
-            return "Password mismach"
+            return "Password do not match"
         
         return "Successfully created a weConnect Business Account. You can login!"
         

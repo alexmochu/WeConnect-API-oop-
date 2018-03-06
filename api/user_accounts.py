@@ -3,8 +3,9 @@
 """ Provides regular expression matching operations """
 import re
 
-""" User class handles registration and login of users """
-class UserClass(object): 
+class UserClass(object):
+    """ User class handles registration and login of users """
+
     def __init__(self):
         self.users_list = []
     
@@ -35,6 +36,15 @@ class UserClass(object):
             self.users_list.append(user_dict)
         else:
             return "Password do not match"
-        
         return "Successfully created a weConnect Business Account. You can login!"
         
+    def login(self, username, password):
+        """ Login user by checking if user exists in
+            users_lisr
+        """
+        for user in self.users_list:
+            if username == user['username']:
+                if password == user['password']:
+                    return "Successfully logged in. Welcome " + user['username'].capitalize() + " create a Business page"
+                return "Password mismatch"
+        return "You have no account,please sign up"

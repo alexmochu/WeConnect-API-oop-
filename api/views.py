@@ -1,5 +1,5 @@
 # api/__init__.py
-from flask import jsonify, request
+from flask import jsonify, request, session
 from flask_api import FlaskAPI
 
 # local imports
@@ -22,8 +22,8 @@ def home_route():
 
 @app.route('/api/v1/auth/register', methods=['GET', 'POST'])
 def signup():
-    
-    if request.method == "POST":  
+    """ User register """
+    if request.method == "POST":
         username = request.json['username']
         email = request.json['email']
         password = request.json['password']
@@ -31,4 +31,16 @@ def signup():
         msg = user_object.register(username, email, password, cpassword)
         response = jsonify(msg)
         response.status_code = 201
+        return response
+
+@app.route('/api/v1/auth/login', methods=['GET', 'POST'])
+def login():
+    """ User login """
+    if request.method == "POST":
+        username = request.json['username']
+        password = request.json['password']
+        session['username'] = username            
+        msg = user_object.login(username, password)
+        response = jsonify(msg)
+        response.status_code = 200
         return response

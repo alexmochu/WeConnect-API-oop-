@@ -44,3 +44,11 @@ def login():
         response = jsonify(msg)
         response.status_code = 200
         return response
+
+@app.route('/api/v1/auth/logout', methods=['POST'])
+def logout():
+    """ Logging out """
+    if session.get('username') is not None:
+        session.pop('username', None)
+        return jsonify({"message": "Logout successful"})
+    return jsonify({"message": "You are not logged in"})

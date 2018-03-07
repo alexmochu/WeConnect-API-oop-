@@ -45,6 +45,6 @@ class UserClass(object):
         for user in self.users_list:
             if username == user['username']:
                 if password == user['password']:
-                    return "Successfully logged in. Welcome " + user['username'].capitalize() + " create a Business page"
-                return "Password mismatch"
+                    return "Successfully logged in to weConnect API. Create a Business page!"
+                return "Incorrect password"
         return "You have no account,please sign up"

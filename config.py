@@ -16,4 +16,4 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     """ Configurations for Production."""
-    DEBUG = True
+    DEBUG = False

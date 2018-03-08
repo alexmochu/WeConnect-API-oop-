@@ -8,7 +8,7 @@ class UserClass(object):
 
     def __init__(self):
         self.users_list = []
-    
+
     def register(self, username, email, password, cpassword):
         """ Create user accounts by user info to empty dictonary """
         user_dict = {}
@@ -37,7 +37,7 @@ class UserClass(object):
         else:
             return "Password do not match"
         return "Successfully created a weConnect Business Account. You can login!"
-        
+
     def login(self, username, password):
         """ Login user by checking if user exists in
             users_lisr

@@ -49,7 +49,7 @@ def login():
         response.status_code = 200
         return response
 
-# Create and view businesses
+# Route for creating a business
 @app.route('/api/v1/business', methods=['GET', 'POST'])
 def create_business():
     """ create event """
@@ -70,17 +70,30 @@ def create_business():
             return response
     return jsonify({"message": "Please Login"})
 
-# Get Business by Id
+# Route for finding a business by its ID
 @app.route('/api/v1/business/<business_id>', methods=['GET'])
 def get_business(business_id):
-    """ Get Business by ID"""
+    """Get Business by ID"""
 
     if session.get('username') is not None:
         if request.method == "GET":
             msg = business_object.get_business(business_id)
             response = jsonify(msg)
             return response
-    return jsonify({"message": "Please login"})
+    return jsonify({"message": "Please login to get business"})
+
+# Route for deleting business by its ID
+@app.route('/api/v1/business/<business_id>', methods=['DELETE'])
+def delete_business(business_id):
+    """Delete Business by ID"""
+
+    if session.get('username') is not None:
+        business_name = business_id
+        user = session["username"]
+        delete = business_object.delete_business(business_name, user)
+        return jsonify(delete)
+    return jsonify({"message": "Please login to delete a business"})
+
 
 
 # Logout and remove session

@@ -49,3 +49,16 @@ class BusinessesClass(object):
         else:
             return "User name length is less than 8 characters"
         return "Business added successfully. Add another business page"
+
+    def delete_business(self, business_name, user):
+        """Handles removal of businesses"""
+
+        #Checks if a business exists before deleting
+        for business in self.businesses_list:
+            if user == business["owner"]:
+                if business_name == business["business_name"]:
+                    self.businesses_list.remove(business)
+                    return "Business deleted successfully"
+            else:
+                return "Unable to Delete. Please delete a business you own"        
+        return "The business you want to delete cannot be found or has not been created"

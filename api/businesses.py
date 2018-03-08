@@ -11,6 +11,16 @@ class BusinessesClass(object):
         """Gets and Displays all Business items created and stored in the business lists"""
         return self.businesses_list
 
+    def get_business(self, business_id):
+        """Get a business by its ID"""
+
+        #Check if business exists in business_list
+        for business in self.businesses_list:
+            if business_id == business["business_name"]:
+                return business
+
+        return "Business not found. Please search an already created business"
+
     def create_business(self, business_name, user, category, location):
         """Handles creation of events"""
         business_dict = {}

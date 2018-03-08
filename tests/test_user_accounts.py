@@ -20,9 +20,8 @@ class TestUserAccountsTestCases(unittest.TestCase):
     def test_special_characters(self):
         """ Test to check if the username has any special characters  """
 
-        msg = self.user.register("chairman$","mochualex4@gmail.com", "qwerWER4", "qwerWER4")
+        msg = self.user.register("chairman$", "mochualex4@gmail.com", "qwerWER4", "qwerWER4")
         self.assertIn("Username should not have special characters (. , ! space [])", msg)
-    
 
     def test_invalid_email(self):
         """ Test to check if the user entered an invalid email"""

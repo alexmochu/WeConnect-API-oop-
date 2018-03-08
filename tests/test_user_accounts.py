@@ -16,6 +16,7 @@ class TestUserAccountsTestCases(unittest.TestCase):
         msg = self.user.register("chairman", "mochualex4@gmail.com", "qwerW", "qwerW")
         self.assertEqual(msg, "Input a password that is at least 8 characters long")
 
+    # Testisng User registration
     def test_special_characters(self):
         """ Test to check if the username has any special characters  """
 
@@ -48,7 +49,32 @@ class TestUserAccountsTestCases(unittest.TestCase):
         msg = self.user.register("chairman", "mochualex4@gmail.com", "qwerWER4", "qwerWER4")
         self.assertEqual(msg, "Successfully created a weConnect Business Account. You can login!")
 
+    # Testing Login
+    def test_if_user_is_registered(self):
+        """ Checking if the user has an account """
+
+        self.user.users_list = [{'username': 'chairman', 'password': 'qwerWER4', 'email': 'mochualex4@gmail.com'}]
+        msg = self.user.login("Dolf", "qwerWER4")
+        self.assertEqual(msg, "You have no account,please sign up")
+
+    def test_login_wrong_password(self):
+        """ Checking if user log in with wrong password """
+
+        self.user.users_list = [{'username': 'chairman', 'password': 'qwerWER4', 'email': 'mochualex4@gmail.com'}]
+        msg = self.user.login("chairman", "asdQWER34")
+        self.assertEqual(msg, "Incorrect password")
+
+    def test_correct_login(self):
+        """ Checking if user login with correct credentials or successfully """
+
+        self.user.users_list = [{'username': 'chairman', 'password': 'qwerWER4', 'email': 'mochualex4@gmail.com'}]
+        msg = self.user.login("chairman", "qwerWER4")
+        self.assertIn("Successfully logged in to weConnect API. Create a Business page!", msg)
+
     def tearDown(self):
         """ Teardown Users Class test case  """
 
         del self.user
+
+if __name__ == '__main__':
+    unittest.main()

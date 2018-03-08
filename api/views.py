@@ -70,6 +70,19 @@ def create_business():
             return response
     return jsonify({"message": "Please Login"})
 
+# Get Business by Id
+@app.route('/api/v1/business/<business_id>', methods=['GET'])
+def get_business(business_id):
+    """ Get Business by ID"""
+
+    if session.get('username') is not None:
+        if request.method == "GET":
+            msg = business_object.get_business(business_id)
+            response = jsonify(msg)
+            return response
+    return jsonify({"message": "Please login"})
+
+
 # Logout and remove session
 @app.route('/api/v1/auth/logout', methods=['POST'])
 def logout():

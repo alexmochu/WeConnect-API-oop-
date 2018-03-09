@@ -3,3 +3,5 @@
     - "3.6"
   script:
     - pytest
+
+  after_success: coveralls

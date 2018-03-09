@@ -45,8 +45,8 @@ The API has been built with:
 | /api/v1/auth/login    | POST | User Login
 | /api/v1/auth/reset-password | POST | User can be able to reset password
 | /api/v1/auth/logout | POST | Logs out User
-| /api/v1/businesses | POST | Create a business with unique ID and business name
-| /api/v1/businesses | GET | Retrive all business created
+| /api/v1/business | POST | Create a business with unique ID and business name
+| /api/v1/business | GET | Retrive all business created
 | /api/v1/business/<business_id> | GET | Retrive a business by ID
 
 

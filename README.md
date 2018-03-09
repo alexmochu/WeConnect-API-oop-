@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+[![Build Status](https://travis-ci.org/alexmochu/WeConnect-API-oop-.svg?branch=api)](https://travis-ci.org/alexmochu/WeConnect-API-oop-)
 # WeConnect-API-oop-
 WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with.  
 
@@ -11,6 +11,7 @@ The API has been built with:
 - The <a href="https://github.com/alexmochu/alexmochu.github.io">UI Templates</a> have been hosted on Github Pages
 
 # Features
+- Users can be able to register and create an account
 
 # Installation
 - Unsure you have installed Python3.6+, created and a activated a virtual environment.
@@ -24,8 +25,9 @@ Type:
 - export FLASK_APP=run.py
 - flask run
 
-# Tests
+# Running the Tests
+- Install Pytest : pip install pytest
+- Run tests: py.test
 
 # Using the API
-=======
->>>>>>> api
+

@@ -3,6 +3,6 @@
 # local import
 from api.views import app
 
-"""Initialize the app"""
 def create_app():
+    """Initialize the app"""
     return app

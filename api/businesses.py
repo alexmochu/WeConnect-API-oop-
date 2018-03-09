@@ -34,8 +34,7 @@ class BusinessesClass(object):
         #Check for special characters
         for business in self.businesses_list:
             if business_name == business["business_name"]:
-                response = {"message":"Please enter a Unique business name, business name \
-                               already taken"}
+                response = {"message":"Please enter a Unique business name, business name already taken"}
                 return response
 
         if len(business_name) < 6:
@@ -81,6 +80,5 @@ class BusinessesClass(object):
             else:
                 response = {"message":"Unable to Delete. Please delete a business you own"}
                 return response
-        response = {"message":"The business you want to delete \
-                     cannot be found or has not been created"}
+        response = {"message":"The business you want to delete cannot be found or has not been created"}
         return response

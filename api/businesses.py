@@ -18,13 +18,14 @@ class BusinessesClass(object):
 
     def get_business(self, business_id):
         """Get a business by its ID"""
-
+        
         #Check if business exists in business_list
         for business in self.businesses_list:
             if business_id == business['id']:
                 return business
-            response = {"message":"Business not found. Please search an already created business"}
-            return response
+            else:
+                response = {"message":"Business not found. Please search an already created business"}
+        return response 
 
     def create_business(self, business_name, user, category, location):
         """Handles creation of events"""
@@ -33,8 +34,7 @@ class BusinessesClass(object):
         #Check for special characters
         for business in self.businesses_list:
             if business_name == business["business_name"]:
-                response = {"message":"Please enter a Unique business name, business name \
-                               already taken"}
+                response = {"message":"Please enter a Unique business name, business name already taken"}
                 return response
 
         if len(business_name) < 6:
@@ -54,7 +54,7 @@ class BusinessesClass(object):
             return response
 
         elif len(user) > 6:
-            business_dict['id'] = len(self.businesses_list) + 1
+            business_dict['id'] = str(len(self.businesses_list) + 1)
             business_dict['business_name'] = business_name
             business_dict['owner'] = user
             business_dict['category'] = category
@@ -67,19 +67,18 @@ class BusinessesClass(object):
         response = {"message":"Business added successfully. Add another business page"}
         return response
 
-    def delete_business(self, business_name, user):
+    def delete_business(self, business_id, user):
         """Handles removal of businesses"""
 
         #Checks if a business exists before deleting
         for business in self.businesses_list:
             if user == business["owner"]:
-                if business_name == business["business_name"]:
+                if business_id == business["business_id"]:
                     self.businesses_list.remove(business)
                     response = {"message":"Business deleted successfully"}
                     return response
             else:
                 response = {"message":"Unable to Delete. Please delete a business you own"}
                 return response
-        response = {"message":"The business you want to delete \
-                     cannot be found or has not been created"}
+        response = {"message":"The business you want to delete cannot be found or has not been created"}
         return response

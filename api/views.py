@@ -84,16 +84,19 @@ def reset_password():
 
 @app.errorhandler(403)
 def forbidden():
+    """Handle 403 error"""
     response = {"message":"You do not have enough permision to access this route"}
     return response, 403
 
 @app.errorhandler(404)
 def page_not_found():
+    """Handle 404 error"""
     response = {"message":"Sorry. What you are looking for cannot be found."}
     return response, 404
 
 @app.errorhandler(500)
 def internal_server_error():
+    """Handle 500 error"""
     response = {"message":"The server encountered an internal error. Thats all I know"}
     return response, 500
 
@@ -115,10 +118,10 @@ def delete_business(business_id):
     """Delete Business by ID"""
 
     if session.get('username') is not None:
-        business_name = business_id
-        user = session["username"]
-        delete_business_by_id = business_object.delete_business(business_name, user)
-        return jsonify(delete_business_by_id)
+        if request.method == "DELETE":
+            user = session["username"]
+            delete_business_by_id = business_object.delete_business(business_id, user)
+            return jsonify(delete_business_by_id)
     return jsonify({"message": "Please login to delete a business"}), 401 #unauthorized
 
 

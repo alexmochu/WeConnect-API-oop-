@@ -2,7 +2,7 @@
   python:
     - "3.6"
   script:
-    - pytest
-    -- py.test coveralls/tests.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
-
-  after_success: coveralls
+    - pytest --with--cover-package=sauce
+    
+  after_success: 
+  - coveralls

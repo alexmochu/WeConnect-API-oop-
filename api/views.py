@@ -19,7 +19,7 @@ business_object = BusinessesClass()
 @app.route('/')
 def home_route():
     """ Home route """
-    response = jsonify({'greetings': 'Greetings and welcome to weConnect API'})
+    response = jsonify({'greetings': 'Greetings and welcome to weConnect API'}), 200 #success
     return response
 
 # Registration Route
@@ -30,10 +30,10 @@ def signup():
         username = request.json['username']
         email = request.json['email']
         password = request.json['password']
-        cpassword = request.json['cpassword']
-        msg = user_object.register(username, email, password, cpassword)
+        confirm_password = request.json['confirm_password']
+        msg = user_object.register(username, email, password, confirm_password)
         response = jsonify(msg)
-        response.status_code = 201
+        response.status_code = 200
         return response
 
 # Login Route
@@ -56,7 +56,7 @@ def create_business():
     if session.get('username') is not None:
         if request.method == "POST":
             business_name = request.json['business_name']
-            user = request.json['user']
+            user = session["username"]
             location = request.json['location']
             category = request.json['category']
 
@@ -68,7 +68,34 @@ def create_business():
             msg = business_object.get_all_businesses()
             response = jsonify(msg)
             return response
-    return jsonify({"message": "Please Login"})
+    return jsonify({"message": "Please Login"}), 401 #unauthorized
+
+# Route for reseting a users password
+@app.route('/api/v1/auth/reset-password', methods=['POST'])
+def reset_password():
+    """ Reseting password """
+    if session.get('username') is not None:
+        if request.method == "POST":
+            new_password = request.json['new_password']
+            confirm_password = request.json['confirm_password']
+            msg = user_object.change_password(new_password, confirm_password)
+            return msg
+    return jsonify({"message": "Please login to get business"}), 401 #unauthorized
+
+@app.errorhandler(403)
+def forbidden():
+    response = {"message":"You do not have enough permision to access this route"}
+    return response, 403
+
+@app.errorhandler(404)
+def page_not_found():
+    response = {"message":"Sorry. What you are looking for cannot be found."}
+    return response, 404
+
+@app.errorhandler(500)
+def internal_server_error():
+    response = {"message":"The server encountered an internal error. Thats all I know"}
+    return response, 500
 
 # Route for finding a business by its ID
 @app.route('/api/v1/business/<business_id>', methods=['GET'])
@@ -80,7 +107,7 @@ def get_business(business_id):
             msg = business_object.get_business(business_id)
             response = jsonify(msg)
             return response
-    return jsonify({"message": "Please login to get business"})
+    return jsonify({"message": "Please login to get business"}), 401 #unauthorized
 
 # Route for deleting business by its ID
 @app.route('/api/v1/business/<business_id>', methods=['DELETE'])
@@ -90,17 +117,16 @@ def delete_business(business_id):
     if session.get('username') is not None:
         business_name = business_id
         user = session["username"]
-        delete = business_object.delete_business(business_name, user)
-        return jsonify(delete)
-    return jsonify({"message": "Please login to delete a business"})
-
+        delete_business_by_id = business_object.delete_business(business_name, user)
+        return jsonify(delete_business_by_id)
+    return jsonify({"message": "Please login to delete a business"}), 401 #unauthorized
 
 
 # Logout and remove session
-@app.route('/api/v1/auth/logout', methods=['POST'])
+@app.route('/api/v1/auth/logout', methods=['GET', 'POST'])
 def logout():
     """ Logging out """
     if session.get('username') is not None:
         session.pop('username', None)
         return jsonify({"message": "Logout successful"})
-    return jsonify({"message": "You are not logged in"})
+    return jsonify({"message": "You are not logged in"}), 401 #unauthorized

@@ -50,7 +50,7 @@ The API has been built with:
 | /api/v1/business/<business_id> | GET | Retrive a business by ID
 
 
-# UI Teplates
+# UI Templates
 ![weconnecthomapage](https://user-images.githubusercontent.com/18735075/37186957-059ebe8c-2359-11e8-8c3a-2ae5d56c1267.png)
 ![signup](https://user-images.githubusercontent.com/18735075/37186858-a0eac12a-2358-11e8-825e-de23e9ea3212.png)![search](https://user-images.githubusercontent.com/18735075/37186864-ab162748-2358-11e8-98fc-8449e5837eaa.png)![login](https://user-images.githubusercontent.com/18735075/37186854-9b372502-2358-11e8-9271-eff2dee807b7.png)
 

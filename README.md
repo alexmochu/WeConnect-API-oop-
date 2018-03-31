@@ -7,9 +7,10 @@ WeConnect provides a platform that brings businesses and individuals together. T
 The API has been built with:
 - Flask micro-framework (Python 3.6)
 
-# UI templates
+# UI templates and API Documentation
 - To preview the UI, proceed to https://alexmochu.github.io .
 - The <a href="https://github.com/alexmochu/alexmochu.github.io">UI Templates</a> have been hosted on Github Pages
+- Access the API documentation at "https://weconnectapiv1.docs.apiary.io/#"
 
 # Features
 1.  Users can be able to register and create an account

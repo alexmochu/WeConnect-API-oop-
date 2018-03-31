@@ -1,6 +1,7 @@
 # api/businesses
 
 import re
+import uuid
 
 class BusinessesClass(object):
     """Handles creation of events"""
@@ -54,11 +55,12 @@ class BusinessesClass(object):
             return response
 
         elif len(user) > 6:
-            business_dict['id'] = str(len(self.businesses_list) + 1)
+            business_dict['id'] = str(uuid.uuid4())
             business_dict['business_name'] = business_name
             business_dict['owner'] = user
             business_dict['category'] = category
             business_dict['location'] = location
+            business_dict['reviews'] = []
 
             self.businesses_list.append(business_dict)
         else:

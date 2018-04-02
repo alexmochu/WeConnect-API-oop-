@@ -72,6 +72,19 @@ def create_business():
             return response
     return jsonify({"message": "Please Login"})
 
+@app.route('/api/v1/business/<business_id>', methods=['PUT'])
+def update_business(business_id):
+
+    if session.get('username') is not None:
+        if request.method == "PUT":
+            user = session["username"]
+            business = business_object.get_business(business_id)
+            old_business_name = business['business_name']
+            edit_business_name = request.json['edit_business_name']
+            update_business_by_id = business_object.update_business(edit_business_name, old_business_name, user)
+            return jsonify(update_business_by_id)
+    return jsonify({"message": "Please Login update a business"})
+
 # Route for reseting a users password
 @app.route('/api/v1/auth/reset-password', methods=['POST'])
 def reset_password():

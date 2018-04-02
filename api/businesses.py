@@ -60,7 +60,6 @@ class BusinessesClass(object):
             business_dict['owner'] = user
             business_dict['category'] = category
             business_dict['location'] = location
-            business_dict['reviews'] = []
 
             self.businesses_list.append(business_dict)
         else:
@@ -75,7 +74,7 @@ class BusinessesClass(object):
         #Checks if a business exists before deleting
         for business in self.businesses_list:
             if user == business["owner"]:
-                if business_id == business["business_id"]:
+                if business_id == business["id"]:
                     self.businesses_list.remove(business)
                     response = {"message":"Business deleted successfully"}
                     return response

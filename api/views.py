@@ -5,6 +5,7 @@ from flask_api import FlaskAPI
 # local imports
 from api.user_accounts import UserClass
 from api.businesses import BusinessesClass
+from api.buiness_reviews import ReviewsClass
 
 # Initialize the api
 app = FlaskAPI(__name__, instance_relative_config=True)
@@ -14,6 +15,7 @@ app.config.from_pyfile('config.py')
 
 user_object = UserClass()
 business_object = BusinessesClass()
+review_object = ReviewsClass()
 
 # Home route
 @app.route('/')
@@ -105,6 +107,26 @@ def delete_business(business_id):
             delete_business_by_id = business_object.delete_business(business_id, user)
             return jsonify(delete_business_by_id)
     return jsonify({"message": "Please login to delete a business"})
+
+@app.route('/api/v1/business/<business_id>/reviews', methods=['GET', 'POST'])
+def add_review(business_id):
+
+    if session.get('username') is not None:
+        if request.method == "POST":
+            business = business_object.get_business(business_id)
+            business_unique_id = business["id"]
+            user = session["username"]
+            review = request.json['review']
+
+            msg = review_object.add_review(business_unique_id, user, review)
+            response = jsonify(msg)
+            response.status_code = 201
+            return response
+        elif request.method == "GET":
+            msg = review_object.get_all_business_reviews_by_id()
+            response = jsonify(msg)
+            return response
+    return jsonify({"message": "Please Login to add Review"})
 
 
 # Logout and remove session

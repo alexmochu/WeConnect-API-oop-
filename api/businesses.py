@@ -10,6 +10,11 @@ class BusinessesClass(object):
         """ list to hold events a user creates """
         self.businesses_list = []
 
+    def getOwner(self, user):
+        """ Returns businesses belonging to a user """
+        user_business_list = [business for business in self.businesses_list if business['owner'] == user]
+        return user_business_list
+
     def get_all_businesses(self):
         """Gets and Displays all Business items created and stored in the business lists"""
         if len(self.businesses_list) == 0:
@@ -67,6 +72,25 @@ class BusinessesClass(object):
             return response
         response = {"message":"Business added successfully. Add another business page"}
         return response
+
+    def update_business(self, edit_business_name, old_business_name, user):
+        
+        if re.match("^[a-zA-Z0-9 _]*$", edit_business_name):
+            #Get users lists
+            my_businesses = self.getOwner(user)
+            businesses = [business for business in my_businesses if business["business_name"] == old_business_name]
+            if not businesses:
+                return "Update Failed. You can only update business that you already created and own"
+
+            found_business = businesses[0]
+            del found_business['business_name']
+            business_dict = {
+                    'business_name': edit_business_name
+                }
+            found_business.update(business_dict) 
+            return self.getOwner(user)               
+        else:
+            return "No special characters (. , ! space [] )"
 
     def delete_business(self, business_id, user):
         """Handles removal of businesses"""

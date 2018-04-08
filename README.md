@@ -9,6 +9,7 @@ The API has been built with:
 # UI templates and API Documentation
 - To preview the UI, proceed to https://alexmochu.github.io .
 - The <a href="https://github.com/alexmochu/alexmochu.github.io">UI Templates</a> have been hosted on Github Pages
+- To access the API hosted on the Heroku cloud platform -->> https://weconnect-v1-api-heroku.herokuapp.com/
 - Access the API documentation at "https://weconnectapiv1.docs.apiary.io/#"
 
 # Features

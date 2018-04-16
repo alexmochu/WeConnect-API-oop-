@@ -22,13 +22,15 @@ class ReviewsClass(object):
             self.reviews_list.append(review_dict)
             print(review_dict)
             print(self.reviews_list)
-            return "Successfully reviewed a business"
-        return "You have already reveiwed this business"
+            response = {"message":"Successfully reviewed a business"}
+            return response
+        response = {"message":"You have already reveiwed this business"}
+        return response
 
     def get_all_business_reviews_by_id(self):
 
         if len(self.reviews_list) == 0:
             repsonse = {"message":"The business has no reviews yet. Be the first to review"}
             return repsonse
-        return self.reviews_list  
+        return self.reviews_list
     

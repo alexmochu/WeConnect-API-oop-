@@ -5,7 +5,7 @@ from flask_api import FlaskAPI
 # local imports
 from api.user_accounts import UserClass
 from api.businesses import BusinessesClass
-from api.buiness_reviews import ReviewsClass
+from api.business_reviews import ReviewsClass
 
 # Initialize the api
 app = FlaskAPI(__name__, instance_relative_config=True)

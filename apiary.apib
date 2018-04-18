@@ -5,76 +5,52 @@ HOST: https://weconnect-v1-api-heroku.herokuapp.com/
 
 WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the users the ability to write reviews about the businesses they have interacted with. 
 
-## Questions Collection [/questions]
+## Homepage [/]
 
-### List All Questions [GET]
+### View The Homepage [GET]
+
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "greetings": "Greetings and welcome to weConnect API"
         }
 
-+ Response 201 (application/json)
 
-    + Headers
+## Create Acoucnt [/api/v1/auth/register]
 
-            Location: /questions/2
+### Register [POST]
 
-    + Body
+## Login [/api/v1/auth/login]
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+### Login [GET]
+
+## Reset Password [/api/v1/auth/reset-password]
+
+### Password [POST]
+
+## Logout [/api/v1/auth/logout]
+
+### Logout [GET]
+
+## Create Business and GET all Business Accounts [/api/v1/business]
+
+### Open Business [POST]
+
+### Retrive all Businesses [GET]
+
+## Retrive and Update Business [/api/v1/business/<business_id>]
+
+### Retrive business by ID [GET]
+
+### Update business by ID [PUT]
+
+## Delete Business [/api/v1/business/<business_id]
+
+### Delete business item [DELETE]
+
+## Review Business and GET all Reviews by ID [/api/v1/business/<review_id>/reviews]
+
+### Review Business item [PUT]
+
+### List All Review bi ID [GET]

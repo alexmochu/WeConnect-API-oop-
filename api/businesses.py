@@ -58,17 +58,15 @@ class BusinessesClass(object):
         elif len(location) < 5:
             response = {"message":"Your location name should be atleast 5 characters"}
             return response
-
         elif len(user) > 6:
             business_dict['id'] = str(uuid.uuid4())
             business_dict['business_name'] = business_name
             business_dict['owner'] = user
             business_dict['category'] = category
             business_dict['location'] = location
-
             self.businesses_list.append(business_dict)
         else:
-            response = {"message":"User name length is less than 8 characters"}
+            response = {"message":"User name length is less than 6 characters"}
             return response
         response = {"message":"Business added successfully. Add another business page"}
         return response

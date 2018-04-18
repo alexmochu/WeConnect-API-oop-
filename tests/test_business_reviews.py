@@ -21,6 +21,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         msg = self.review_item_class.add_review("4512588399294", "chairman", "This is a review")
         self.assertEqual({"message":"Successfully reviewed a business"}, msg)
 
+
     def tearDown(self):
         """ Teardown Review Class test case  """
 

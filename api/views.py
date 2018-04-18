@@ -35,7 +35,7 @@ def signup():
         confirm_password = request.json['confirm_password']
         msg = user_object.register(username, email, password, confirm_password)
         response = jsonify(msg)
-        response.status_code = 200
+        response.status_code = 201
         return response
 
 # Login Route
@@ -140,7 +140,6 @@ def add_review(business_id):
             response = jsonify(msg)
             return response
     return jsonify({"message": "Please Login to add Review"})
-
 
 # Logout and remove session
 @app.route('/api/v1/auth/logout', methods=['GET', 'POST'])

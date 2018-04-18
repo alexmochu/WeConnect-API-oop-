@@ -85,8 +85,8 @@ class BusinessesClass(object):
             business_dict = {
                     'business_name': edit_business_name
                 }
-            found_business.update(business_dict) 
-            return self.getOwner(user)               
+            found_business.update(business_dict)
+            return self.getOwner(user)             
         else:
             return "No special characters (. , ! space [] )"
 

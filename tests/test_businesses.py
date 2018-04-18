@@ -44,6 +44,41 @@ class TestBusinessItemsTestCases(unittest.TestCase):
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         msg = self.business_item_class.update_business("Christmass", "Maendeleo", "chairman")
         self.assertEqual(msg, [{"owner": "chairman", "business_name":"Christmass", "category":"Backaend", "location":"myhomecity"}])
+    
+    def test_unique_business_name(self):
+        self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
+                                                 {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
+        user = "chairman"
+        msg = self.business_item_class.create_business("Maendeleo", user, "soft*%ware", "nairo@&")
+        self.assertEqual(msg, {"message":"Please enter a Unique business name, business name already taken"})
+
+    def test_min_business_name_length(self):
+        self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
+                                                 {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
+        user = "chairman"
+        msg = self.business_item_class.create_business("Mdleo", user, "soft*%ware", "nairo@&")
+        self.assertEqual(msg, {"message":"Input a business name that is atleast 6 characters"}) 
+
+    def test_min_category_name_length(self):
+        self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
+                                                 {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
+        user = "chairman"
+        msg = self.business_item_class.create_business("Mafeendeleo", user, "sore", "nairo@&")
+        self.assertEqual(msg, {"message":"Your caegory name should be atleast 6 characters"})    
+
+    def test_min_location_name_length(self):
+        self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
+                                                 {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
+        user = "chairman"
+        msg = self.business_item_class.create_business("Mafeendeleo", user, "software", "nai")
+        self.assertEqual(msg, {"message":"Your location name should be atleast 5 characters"})    
+
+    def test_min_user_name_length(self):
+        self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
+                                                 {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
+        user = "chan"
+        msg = self.business_item_class.create_business("Mafeendeleo", user, "software", "nairobi")
+        self.assertEqual(msg, {"message":"User name length is less than 6 characters"})    
 
     def tearDown(self):
         """ Teardown Business Class test case  """

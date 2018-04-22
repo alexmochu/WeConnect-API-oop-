@@ -1,5 +1,6 @@
 """ File to handle Unit Test for Business Items """
 import unittest
+# local imports
 from api.businesses import BusinessesClass
 
 class TestBusinessItemsTestCases(unittest.TestCase):
@@ -46,6 +47,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.assertEqual(msg, [{"owner": "chairman", "business_name":"Christmass", "category":"Backaend", "location":"myhomecity"}])
     
     def test_unique_business_name(self):
+        """ check for unique business name """
         self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chairman"
@@ -53,6 +55,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.assertEqual(msg, {"message":"Please enter a Unique business name, business name already taken"})
 
     def test_min_business_name_length(self):
+        """ check minimum business length """
         self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chairman"
@@ -60,6 +63,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.assertEqual(msg, {"message":"Input a business name that is atleast 6 characters"}) 
 
     def test_min_category_name_length(self):
+        """ check minimum category length """
         self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chairman"
@@ -67,6 +71,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.assertEqual(msg, {"message":"Your caegory name should be atleast 6 characters"})    
 
     def test_min_location_name_length(self):
+        """ check minimum location length """
         self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chairman"
@@ -74,6 +79,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.assertEqual(msg, {"message":"Your location name should be atleast 5 characters"})    
 
     def test_min_user_name_length(self):
+        """ check minimum username length """
         self.business_item_class.businesses_list = [{"owner": "chairman", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"},
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chan"
@@ -82,7 +88,6 @@ class TestBusinessItemsTestCases(unittest.TestCase):
 
     def tearDown(self):
         """ Teardown Business Class test case  """
-
         del self.business_item_class
 
 if __name__ == '__main__':

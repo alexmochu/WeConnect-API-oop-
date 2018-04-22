@@ -7,11 +7,12 @@ from api.user_accounts import UserClass
 from api.businesses import BusinessesClass
 from api.business_reviews import ReviewsClass
 
-# Initialize the api
+# create the application instance
 app = FlaskAPI(__name__, instance_relative_config=True)
+
+# load config from this file
 app.config.from_object('config')
 app.config.from_pyfile('config.py')
-
 
 user_object = UserClass()
 business_object = BusinessesClass()
@@ -52,7 +53,7 @@ def login():
         return response
 
 # Route for creating a business
-@app.route('/api/v1/business', methods=['GET', 'POST'])
+@app.route('/api/v1/business', methods=['POST'])
 def create_business():
     """ create event """
     if session.get('username') is not None:
@@ -61,7 +62,6 @@ def create_business():
             user = session["username"]
             location = request.json['location']
             category = request.json['category']
-
             msg = business_object.create_business(business_name, user, category, location)
             response = jsonify(msg)
             response.status_code = 201
@@ -72,9 +72,10 @@ def create_business():
             return response
     return jsonify({"message": "Please Login"})
 
+# Route for updating business items
 @app.route('/api/v1/business/<business_id>', methods=['PUT'])
 def update_business(business_id):
-
+    """ update business item """
     if session.get('username') is not None:
         if request.method == "PUT":
             user = session["username"]
@@ -100,8 +101,7 @@ def reset_password():
 # Route for finding a business by its ID
 @app.route('/api/v1/business/<business_id>', methods=['GET'])
 def get_business(business_id):
-    """Get Business by ID"""
-
+    """ Get Business by ID """
     if session.get('username') is not None:
         if request.method == "GET":
             msg = business_object.get_business(business_id)
@@ -112,8 +112,7 @@ def get_business(business_id):
 # Route for deleting business by its ID
 @app.route('/api/v1/business/<business_id>', methods=['DELETE'])
 def delete_business(business_id):
-    """Delete Business by ID"""
-
+    """ Delete Business by ID """
     if session.get('username') is not None:
         if request.method == "DELETE":
             user = session["username"]
@@ -121,16 +120,16 @@ def delete_business(business_id):
             return jsonify(delete_business_by_id)
     return jsonify({"message": "Please login to delete a business"})
 
+# Route for adding review to a business
 @app.route('/api/v1/business/<business_id>/reviews', methods=['GET', 'POST'])
 def add_review(business_id):
-
+    """ Add review to business """
     if session.get('username') is not None:
         if request.method == "POST":
             business = business_object.get_business(business_id)
             business_unique_id = business["id"]
             user = session["username"]
             review = request.json['review']
-
             msg = review_object.add_review(business_unique_id, user, review)
             response = jsonify(msg)
             response.status_code = 201

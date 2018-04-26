@@ -22,6 +22,11 @@ class UserClass(object):
         if len(password) < 8:
             response = {"message":"Input a password that is at least 8 characters long"}
             return response
+
+        elif not re.match(r"^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$])[\w\d@#$]{6,12}$", password):
+            response = {"message":"Password should have atleast one number, small letter, capital letter and special character"}
+            return response
+
         elif len(username) < 6:
             response = {"message":"Username should be atleast 6 characters"}
             return response

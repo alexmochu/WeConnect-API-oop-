@@ -15,10 +15,11 @@ The API has been built with:
 # Features
 1.  Users can be able to register and create an account
 2.  Registered users can be able to log in
-3.  Once logged in, the user can create a business
+3.  Once logged in, the user can create a business. The business needs to be in a category so he/she can either choose a category that is created or create his/her own.
 4.  Each business created can has an ID and a unique business name
 5.  Logged in users can query all businesses or a single business by its ID
 6.  Only logged in users have the privilege of creating and viewing businesses
+7.  The logged in user can also view, update or delete the categories
 
 # Installation
 1. Ensure you have installed Python3.6+, created and an activated a virtual environment.

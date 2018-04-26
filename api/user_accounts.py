@@ -2,11 +2,10 @@
 
 """ Provides regular expression matching operations """
 import re
-
 class UserClass(object):
     """ User class handles registration and login of users """
-
     def __init__(self):
+        # list to hold user details
         self.users_list = []
 
     def register(self, username, email, password, confirm_password):
@@ -39,7 +38,6 @@ class UserClass(object):
             user_dictionary['username'] = username
             user_dictionary['email'] = email
             user_dictionary['password'] = password
-
             self.users_list.append(user_dictionary)
         else:
             response = {"message":"Password do not match"}

@@ -1,11 +1,9 @@
 # api/businesses
-
 import re
 import uuid
 
 class BusinessesClass(object):
-    """Handles creation of events"""
-
+    """Handles creation of business items"""
     def __init__(self):
         """ list to hold events a user creates """
         self.businesses_list = []
@@ -24,7 +22,6 @@ class BusinessesClass(object):
 
     def get_business(self, business_id):
         """Get a business by its ID"""
-        
         #Check if business exists in business_list
         for business in self.businesses_list:
             if business_id == business['id']:
@@ -36,7 +33,6 @@ class BusinessesClass(object):
     def create_business(self, business_name, user, category, location):
         """Handles creation of events"""
         business_dict = {}
-
         #Check for special characters
         for business in self.businesses_list:
             if business_name == business["business_name"]:
@@ -52,7 +48,7 @@ class BusinessesClass(object):
             return response
 
         elif len(category) < 6:
-            response = {"message":"Your caegory name should be atleast 6 characters"}
+            response = {"message":"Your category name should be atleast 6 characters"}
             return response
 
         elif len(location) < 5:
@@ -72,14 +68,13 @@ class BusinessesClass(object):
         return response
 
     def update_business(self, edit_business_name, old_business_name, user):
-        
+        """ handles updating of a business """
         if re.match("^[a-zA-Z0-9 _]*$", edit_business_name):
             #Get users lists
             my_businesses = self.getOwner(user)
             businesses = [business for business in my_businesses if business["business_name"] == old_business_name]
             if not businesses:
                 return "Update Failed. You can only update business that you already created and own"
-
             found_business = businesses[0]
             del found_business['business_name']
             business_dict = {
@@ -92,7 +87,6 @@ class BusinessesClass(object):
 
     def delete_business(self, business_id, user):
         """Handles removal of businesses"""
-
         #Checks if a business exists before deleting
         for business in self.businesses_list:
             if user == business["owner"]:

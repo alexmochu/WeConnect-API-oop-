@@ -1,4 +1,5 @@
 import unittest
+# local imports
 from api.business_reviews import ReviewsClass
 
 class TestBusinessItemsTestCases(unittest.TestCase):
@@ -6,7 +7,6 @@ class TestBusinessItemsTestCases(unittest.TestCase):
 
     def setUp(self):
         """ Setup Review Class test case """
-
         self.review_item_class = ReviewsClass()
 
     def test_reviewed_business(self):
@@ -21,10 +21,9 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         msg = self.review_item_class.add_review("4512588399294", "chairman", "This is a review")
         self.assertEqual({"message":"Successfully reviewed a business"}, msg)
 
-
     def tearDown(self):
         """ Teardown Review Class test case  """
-
         del self.review_item_class
+
 if __name__ == '__main__':
     unittest.main()

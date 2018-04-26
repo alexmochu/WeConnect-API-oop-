@@ -9,9 +9,9 @@ class ApiTestCase(unittest.TestCase):
         """ Setup api views test case """
         api.app.testing = True
         self.app = api.app.test_client()
-        self.data = {"username":"chairman", "email":"email@gmail.com","password":"12345678", "confirm_password":"12345678"}
-        self.data1 = {"username":"chairmanw2", "email":"emaiakll@gmail.com","password":"12345678", "confirm_password":"12345678"}
-        self.data2 = {"username":"chassmanw2", "email":"emaiafgkll@gmail.com","password":"12345678", "confirm_password":"12345678"}
+        self.data = {"username":"chairman", "email":"email@gmail.com","password":"qwerW234#", "confirm_password":"qwerW234#"}
+        self.data1 = {"username":"chairmanw2", "email":"emaiakll@gmail.com","password":"qwerW234#", "confirm_password":"qwerW234#"}
+        self.data2 = {"username":"chassmanw2", "email":"emaiafgkll@gmail.com","password":"qwerW234#", "confirm_password":"qwerW234#"}
         self.data3 = {"id":"4683828373832829", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"}
         self.data4 = {"new_password": "tn&T4tyY", "confirm_password": "tn&T4tyY"}
         self.data5 = {"category": "naehsunjka"}

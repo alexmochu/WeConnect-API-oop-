@@ -46,8 +46,12 @@ The API has been built with:
 | /api/v1/auth/login    | POST | User Login
 | /api/v1/auth/reset-password | POST | User can be able to reset password
 | /api/v1/auth/logout | POST | Logs out User
-| /api/v1/business | POST | Create a business with unique ID and business name
-| /api/v1/business | GET | Retrive all business created
+| /api/v1/category | POST | Create a business category
+| /api/v1/category | GET | Retrieve all created categories
+| /api/v1/category/<category_name> | PUT | Updates a business category
+| /api/v1/category/<category_name> | DELETE | Deletes a business category
+| /api/v1/<category_name>/business | POST | Create a business with unique ID and business name
+| /api/v1/<category_name/business | GET | Retrive all business created
 | /api/v1/business/<business_id> | PUT | Updates a business profile
 | /api/v1/business/<business_id> | GET | Retrive a business by ID
 | /api/v1/business/<business_id> | DELETE | Remove a business

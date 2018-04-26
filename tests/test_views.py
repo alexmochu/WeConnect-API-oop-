@@ -14,6 +14,7 @@ class ApiTestCase(unittest.TestCase):
         self.data2 = {"username":"chassmanw2", "email":"emaiafgkll@gmail.com","password":"12345678", "confirm_password":"12345678"}
         self.data3 = {"id":"4683828373832829", "business_name":"Maendeleo", "category":"Backaend", "location":"myhomecity"}
         self.data4 = {"new_password": "tn&T4tyY", "confirm_password": "tn&T4tyY"}
+        self.data5 = {"category": "naehsunjka"}
     def test_register_user(self):
         """ check registered user view """
         response = self.app.post('/api/v1/auth/register', data = json.dumps(self.data) , content_type = 'application/json')
@@ -58,7 +59,8 @@ class ApiTestCase(unittest.TestCase):
         """check create business view  """
         response = self.app.post('/api/v1/auth/login', data = json.dumps(self.data1) , content_type = 'application/json')
         self.assertEqual(response.status_code, 200)
-        response1 = self.app.post('/api/v1/business', data = json.dumps(self.data3), content_type = 'application/json')
+        self.app.post('/api/v1/category', data = json.dumps(self.data5) , content_type = 'application/json')
+        response1 = self.app.post('/api/v1/naehsunjka/business', data = json.dumps(self.data3), content_type = 'application/json')
         result = json.loads(response1.data.decode())
         self.assertEqual(result["message"], "Business added successfully. Add another business page")
         self.assertEqual(response.status_code, 200)

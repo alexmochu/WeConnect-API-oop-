@@ -68,7 +68,7 @@ class TestBusinessItemsTestCases(unittest.TestCase):
                                                  {"owner": "chairmanwe", "business_name":"NshMaendeleo", "category":"Backaend", "location":"myhomecity"}]
         user = "chairman"
         msg = self.business_item_class.create_business("Mafeendeleo", user, "sore", "nairo@&")
-        self.assertEqual(msg, {"message":"Your caegory name should be atleast 6 characters"})    
+        self.assertEqual(msg, {"message":"Your category name should be atleast 6 characters"})    
 
     def test_min_location_name_length(self):
         """ check minimum location length """

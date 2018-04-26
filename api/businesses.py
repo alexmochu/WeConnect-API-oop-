@@ -48,7 +48,7 @@ class BusinessesClass(object):
             return response
 
         elif len(category) < 6:
-            response = {"message":"Your caegory name should be atleast 6 characters"}
+            response = {"message":"Your category name should be atleast 6 characters"}
             return response
 
         elif len(location) < 5:

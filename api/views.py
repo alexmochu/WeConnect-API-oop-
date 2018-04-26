@@ -6,6 +6,7 @@ from flask_api import FlaskAPI
 from api.user_accounts import UserClass
 from api.businesses import BusinessesClass
 from api.business_reviews import ReviewsClass
+from api.business_category import CategoryClass
 
 # create the application instance
 app = FlaskAPI(__name__, instance_relative_config=True)
@@ -17,6 +18,7 @@ app.config.from_pyfile('config.py')
 user_object = UserClass()
 business_object = BusinessesClass()
 review_object = ReviewsClass()
+category_object = CategoryClass()
 
 # Home route
 @app.route('/')
@@ -52,17 +54,61 @@ def login():
         response.status_code = 200
         return response
 
-# Route for creating a business
-@app.route('/api/v1/business', methods=['POST'])
-def create_business():
-    """ create event """
+# Route for creating a category
+@app.route('/api/v1/category', methods=['GET','POST'])
+def create_category():
+    """ create category """
     if session.get('username') is not None:
         if request.method == "POST":
-            business_name = request.json['business_name']
+            category_name = request.json['category']
             user = session["username"]
+            msg = category_object.create_category(category_name, user)
+            response = jsonify(msg)
+            response.status_code = 201
+            return response
+        elif request.method == "GET":
+            msg = category_object.get_all_categories()
+            response = jsonify(msg)
+            return response
+    return jsonify({"message": "Please Login"})
+
+# Route for updating category
+@app.route('/api/v1/category/<category_name>', methods=['PUT'])
+def update_category(category_name):
+    """ update category """
+    if session.get('username') is not None:
+        if request.method == "PUT":
+            user = session["username"]
+            category = category_object.get_category(category_name)
+            old_category_name = category['category']
+            edit_category_name = request.json['edit_category_name']
+            update_category_by_name = category_object.update_category(edit_category_name, old_category_name, user)
+        return jsonify(update_category_by_name)
+    return jsonify({"message": "Please Login to update a category"})
+
+# Route for deleting a category
+@app.route('/api/v1/category/<category_name>', methods=['DELETE'])
+def delete_category(category_name):
+    """ Delete category by name """
+    if session.get('username') is not None:
+        if request.method == "DELETE":
+            user = session["username"]
+            delete_category_by_name = category_object.delete_category(category_name, user)
+            return jsonify(delete_category_by_name)
+    return jsonify({"message": "Please login to delete a category"})
+
+# Route for creating a business
+@app.route('/api/v1/<category_name>/business', methods=['GET', 'POST'])
+def create_business(category_name):
+    """ create business """
+    if session.get('username') is not None:
+        if request.method == "POST":
+            user = session["username"]
+            category = category_object.check_category(category_name)
+            business_name = request.json['business_name']
             location = request.json['location']
-            category = request.json['category']
-            msg = business_object.create_business(business_name, user, category, location)
+            category_unique_name = category
+            msg = business_object.create_business(business_name, user, category_unique_name, location)
             response = jsonify(msg)
             response.status_code = 201
             return response

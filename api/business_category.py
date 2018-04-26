@@ -22,11 +22,29 @@ class CategoryClass(object):
             return response
         return self.category_list
 
+    def get_category(self, category_name):
+        """ Find category by name """
+        for category in self.category_list:
+            if category_name == category['category']:
+                return category
+            else:
+                response = {"message":"Category not found. Please search an already created category"}
+        return response 
+
+    def check_category(self, category_name):
+        """ Checks if category is created """
+        for category in self.category_list:
+            if category_name == category['category']:
+                return category_name
+            else:
+                response = {"message":"Category not found. Please create a new category or use one that is already created"}
+        return response
+
     def create_category(self, category_name, user):
         """ Create a category """
         category_dict = {}
         for category in self.category_list:
-            if category_name == category["business_name"]:
+            if category_name == category["category"]:
                 response = {"message":"Please enter a Unique category name, category name already taken"}
                 return response
              
@@ -35,14 +53,15 @@ class CategoryClass(object):
             return response
 
         elif not re.match("^[a-zA-Z0-9 _]*$", category_name):
+            response = {"message":"Category name should not contain special characters"}
+            return response
+        else:
             category_dict['id'] = str(uuid.uuid4())
             category_dict['category'] = category_name
             category_dict['owner'] = user
             self.category_list.append(category_dict)
-        else:
-            response = {"message":"Category name should not contain special characters"}
+            response = {"message":"Category added successfully. Add another category"}
             return response
-        response = {"message":"Business added successfully. Add another business page"}
         return response
 
     def update_category(self, edit_category_name, old_category_name, user):
@@ -63,12 +82,12 @@ class CategoryClass(object):
         else:
             return "No special characters (. , ! space [] )"
 
-    def delete_business(self, category_name, user):
+    def delete_category(self, category_name, user):
         """Handles removal of categories"""
         #Checks if a category exists before deleting
         for category in self.category_list:
             if user == category["owner"]:
-                if category_name == category["contact"]:
+                if category_name == category["category"]:
                     self.category_list.remove(category)
                     response = {"message":"Category deleted successfully"}
                     return response

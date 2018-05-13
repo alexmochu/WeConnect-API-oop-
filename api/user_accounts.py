@@ -73,5 +73,5 @@ class UserClass(object):
                 return response
             response = {"message":"The new passwords should match"}
             return response
-        response = {"message":"User does not exist, sign up!"} 
+        #response = {"message":"User does not exist, sign up!"} 
         return response

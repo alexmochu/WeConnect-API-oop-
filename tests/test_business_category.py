@@ -1,11 +1,8 @@
-import os
 import unittest
-import tempfile
 
-from flask import json, jsonify
+from flask import json
 # local import
 from api.views import app
-from api.business_category import CategoryClass
 
 class TestBusinessItemsTestCases(unittest.TestCase):
     """ Category Items tests case """

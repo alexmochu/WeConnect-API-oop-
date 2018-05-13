@@ -35,7 +35,7 @@ class CategoryClass(object):
         """ Checks if category is created """
         for category in self.category_list:
             if category_name == category['category']:
-                return category_name
+                return category['id']
             else:
                 response = {"message":"Category not found. Please create a new category or use one that is already created"}
         return response

@@ -98,17 +98,18 @@ def delete_category(category_name):
     return jsonify({"message": "Please login to delete a category"})
 
 # Route for creating a business
-@app.route('/api/v1/<category_name>/business', methods=['GET', 'POST'])
-def create_business(category_name):
+@app.route('/api/v1/business', methods=['GET', 'POST'])
+def create_business():
     """ create business """
     if session.get('username') is not None:
         if request.method == "POST":
             user = session["username"]
-            category = category_object.check_category(category_name)
+            
             business_name = request.json['business_name']
             location = request.json['location']
-            category_unique_name = category
-            msg = business_object.create_business(business_name, user, category_unique_name, location)
+            category_name = request.json['category']
+            category_id = category_object.check_category(category_name)
+            msg = business_object.create_business(business_name, user, category_id, location)
             response = jsonify(msg)
             response.status_code = 201
             return response

@@ -3,12 +3,14 @@ import unittest
 from flask import json
 # local import
 from api.views import app
+from api.business_category import CategoryClass
 
 class TestBusinessItemsTestCases(unittest.TestCase):
     """ Category Items tests case """
 
     def setUp(self):
         """ Setup category Class test case """
+        self.category_item_class = CategoryClass()
         app.testing = True
         self.app = app.test_client()
         self.data = {"email":"mochualex4@gmail.com", "username":"chairman", "password":"qweR12#$", "confirm_password":"qweR12#$"}
@@ -45,5 +47,11 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         result = json.loads(response.data.decode())
         self.assertEqual(result["message"], "Category added successfully. Add another category")
 
+    def test_get_all_categories(self):
+        """ Check for all categories """
+        self.category_item_class.category_list = [{"email":"mochualex4@gmail.com", "username":"chairman", "password":"qweR12#$", "confirm_password":"qweR12#$"}]
+        msg = self.category_item_class.category_list
+        value = self.category_item_class.get_all_categories()
+        self.assertEqual(msg, value)
 if __name__ == '__main__':
     unittest.main()

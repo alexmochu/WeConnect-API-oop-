@@ -53,5 +53,13 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         msg = self.category_item_class.category_list
         value = self.category_item_class.get_all_categories()
         self.assertEqual(msg, value)
+
+    def test_owner(self):
+        """ Check for correct event creation """
+        self.category_item_class.category_list = [{'owner': 'alexmochu', 'id': '4873498080', 'category': 'Software'}]
+        user = "alexmochu"
+        msg = self.category_item_class.get_owner(user)
+        self.assertEqual(msg, [{'owner': 'alexmochu', 'id': '4873498080', 'category': 'Software'}])
+
 if __name__ == '__main__':
     unittest.main()

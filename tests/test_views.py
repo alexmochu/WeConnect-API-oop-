@@ -51,5 +51,16 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(result["message"], "Password changed successful")
         self.assertEqual(response.status_code, 200)
 
+    def test_getting_all_categories(self):
+        """
+        Test API can get all Businesses in the system (GET request).
+        """
+        # create a business by making a POST request
+        response = self.app.post('/api/v1/auth/login', data = json.dumps(self.data1) , content_type = 'application/json')
+        self.assertEqual(response.status_code, 200)
+        res = self.app.get('/api/v1/category', content_type='application/json')
+        # get all the business that belong to the test user by making a GET request
+        self.assertEqual(res.status_code, 200)
+
 if __name__ == '__main__':
     unittest.main()

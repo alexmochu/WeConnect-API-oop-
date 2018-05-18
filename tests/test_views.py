@@ -42,6 +42,16 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(result["message"], "Business added successfully. Add another business page")
         self.assertEqual(response.status_code, 200)
 
+    def test_create_business_not_logged_in(self):
+        """check create business view  """
+        #response = self.app.post('/api/v1/auth/login', data = json.dumps(self.data1) , content_type = 'application/json')
+        #self.assertEqual(response.status_code, 200)
+        self.app.post('/api/v1/category', data = json.dumps(self.data5) , content_type = 'application/json')
+        response1 = self.app.post('/api/v1/business', data = json.dumps(self.data3), content_type = 'application/json')
+        result = json.loads(response1.data.decode())
+        self.assertEqual(result["message"], "Please Login")
+        self.assertEqual(response1.status_code, 200)
+
     def test_reset_passoword(self):
         """ check reset password view """
         response = self.app.post('/api/v1/auth/login', data = json.dumps(self.data1) , content_type = 'application/json')
@@ -60,6 +70,7 @@ class ApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         res = self.app.get('/api/v1/category', content_type='application/json')
         # get all the business that belong to the test user by making a GET request
+
         self.assertEqual(res.status_code, 200)
 
 if __name__ == '__main__':

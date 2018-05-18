@@ -18,6 +18,8 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         self.data2 = {"category":"matajikkowe"}
         self.data3 = {"category":"mata"}
         self.data4 = {"category":"matajikk&*(owe"}
+        self.data5 = {"edit_category_name": "Maendeleo&@#"}
+        self.data6 = {"new_password": "tn&T4tyY", "confirm_password": "tn&T4tyY"}
 
         self.app.post('/api/v1/auth/register', data=json.dumps(self.data), content_type='application/json')
         self.app.post('/api/v1/auth/login', data=json.dumps(self.data), content_type='application/json')
@@ -60,6 +62,13 @@ class TestBusinessItemsTestCases(unittest.TestCase):
         user = "alexmochu"
         msg = self.category_item_class.get_owner(user)
         self.assertEqual(msg, [{'owner': 'alexmochu', 'id': '4873498080', 'category': 'Software'}])
+
+    def test_change_password(self):
+        """ Checking if the user changed password successfully """
+        response = self.app.post('/api/v1/auth/login', data = json.dumps(self.data) , content_type = 'application/json')
+        response1 = self.app.post('/api/v1/auth/reset-password', data = json.dumps(self.data6) , content_type = 'application/json')
+        result = json.loads(response1.data.decode())
+        self.assertEqual(result["message"], "Password changed successful")
 
 if __name__ == '__main__':
     unittest.main()

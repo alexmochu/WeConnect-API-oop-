@@ -70,7 +70,7 @@ def create_category():
             msg = category_object.get_all_categories()
             response = jsonify(msg)
             return response
-    return jsonify({"message": "Please Login"})
+    return jsonify({"message": "Please Login to continue"})
 
 # Route for updating category
 @app.route('/api/v1/category/<category_name>', methods=['PUT'])
